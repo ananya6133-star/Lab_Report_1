@@ -16,8 +16,8 @@ A foundational backend development lab demonstrating how to build web servers us
 
 ## 👤 Author Information
 
-- **Name:** G. Meghana
-- **Section:** CSE GEN-AI-2A
+- **Name:** D. Ananya
+- **Section:** CSE AIML-2B
 
 ---
 
@@ -56,8 +56,8 @@ npm -v
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/meghanagogineni919-stack/LAB-1.git
-cd LAB-1
+git clone https://github.com/ananya6133-star/Lab_Report_1.git
+cd Lab_Report_1
 npm install
 ```
 
@@ -91,7 +91,7 @@ node server-http.js
 | Method | Endpoint | Live Link | Description | Sample Response |
 | :--- | :--- | :--- | :--- | :--- |
 | `GET` | `/` | [Open /](https://lab01-silk.vercel.app/) | Welcome page | `Welcome to my Node.js and Express Lab!` |
-| `GET` | `/about` | [Open /about](https://lab01-silk.vercel.app/about) | Student / author details | `{"name": "G. Meghana", "section": "CSE GEN-AI-2A"}` |
+| `GET` | `/about` | [Open /about](https://lab01-silk.vercel.app/about) | Student / author details | `{"name": "D. Ananya", "section": "CSE AIML-2B "}` |
 | `GET` | `/time` | [Open /time](https://lab01-silk.vercel.app/time) | Current date and timestamp | `{"currentDateTime": "2026-10-16T15:46:26.261Z"}` |
 | `*` | Any other route | [Open /random](https://lab01-silk.vercel.app/random) | 404 error handler | `404 - Page Not Found` |
 
@@ -101,10 +101,10 @@ node server-http.js
 
 | Lab Execution & Output |
 | :---: |
-| ![Welcome & Output](screenshots/Screenshot%202026-10-16%20155259.png) |
-| ![About Route](screenshots/Screenshot%202026-10-16%20155602.png) |
-| ![Time Route](screenshots/Screenshot%202026-10-16%20155620.png) |
-| ![Terminal Execution](screenshots/Screenshot%202026-10-16%20155635.png) |
+| ![Welcome & Output](screenshots/welcome-route.png) |
+| ![About Route](screenshots/about-route.png) |
+| ![Time Route](screenshots/time-route.png) |
+| ![404 Error Handler](screenshots/404-route.png) |
 
 ---
 
