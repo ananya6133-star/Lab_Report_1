@@ -8,8 +8,9 @@ const app = express();
 app.use(express.json());
 
 
-// 1. Path to SQLite database file inside the 'database' folder
-const dbFolder = path.join(__dirname, "database");
+// Database folder and file path (compatible with local environment and Vercel serverless)
+const isVercel = !!process.env.VERCEL;
+const dbFolder = isVercel ? "/tmp" : path.join(__dirname, "database");
 const dbPath = path.join(dbFolder, "library.db");
 let db = null;
 
@@ -17,10 +18,17 @@ let db = null;
 // Single async function to connect to SQLite and start Express server
 const initializeDBAndServer = async () => {
   try {
-    
     // Ensure the database folder exists
     if (!fs.existsSync(dbFolder)) {
       fs.mkdirSync(dbFolder, { recursive: true });
+    }
+
+    // In Vercel serverless, copy the bundled database to /tmp (writable directory)
+    if (isVercel && !fs.existsSync(dbPath)) {
+      const sourceDb = path.join(__dirname, "database", "library.db");
+      if (fs.existsSync(sourceDb)) {
+        fs.copyFileSync(sourceDb, dbPath);
+      }
     }
 
     // Connect to SQLite database using async/await
@@ -59,19 +67,31 @@ const initializeDBAndServer = async () => {
       console.log("Sample book records inserted into library.db successfully.");
     }
 
-    // Start Express server on port 3000 ONLY AFTER database connection is successful
-    app.listen(3000, () => {
-      console.log("Server running at http://localhost:3000/");
-    });
+    // Start Express server on port 3000 locally (Vercel manages listening automatically)
+    if (!isVercel) {
+      app.listen(3000, () => {
+        console.log("Server running at http://localhost:3000/");
+      });
+    }
   } catch (error) {
     // Handle database connection errors
     console.error(`DB Error: ${error.message}`);
-    process.exit(1);
+    if (!isVercel) {
+      process.exit(1);
+    }
   }
 };
 
-// Call the initialization function
-initializeDBAndServer();
+// Store promise so serverless handlers wait for DB initialization
+const dbPromise = initializeDBAndServer();
+
+// Middleware to ensure DB is initialized before route execution
+app.use(async (req, res, next) => {
+  if (!db) {
+    await dbPromise;
+  }
+  next();
+});
 
 // ================= CRUD ROUTES =================
 
