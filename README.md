@@ -68,7 +68,7 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/ananya6133-star/Lab_Report_1.git
 cd Lab_Report_1
-git checkout lab-02
+git checkout lab-2
 npm install
 ```
 
