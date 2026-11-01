@@ -8,7 +8,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "books.db"
+      "includeFiles": "{books.db,node_modules/sql.js/dist/**}"
     }
   }
 }

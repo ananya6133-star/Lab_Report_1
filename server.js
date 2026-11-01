@@ -1,30 +1,102 @@
 
 const express = require("express");
-const sqlite3 = require("sqlite3");
-const { open } = require("sqlite");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 app.use(express.json());
 
-const dbPath = path.join(__dirname, "books.db");
+const dbPath = process.env.VERCEL
+    ? path.join("/tmp", "books.db")
+    : path.join(__dirname, "books.db");
+
+// In serverless environments, copy the database to writable /tmp
+if (process.env.VERCEL && !fs.existsSync(dbPath)) {
+    const bundledDbPath = path.join(__dirname, "books.db");
+    if (fs.existsSync(bundledDbPath)) {
+        try {
+            fs.copyFileSync(bundledDbPath, dbPath);
+        } catch (copyErr) {
+            console.error("Failed to copy database to /tmp:", copyErr.message);
+        }
+    }
+}
+
 const port = process.env.PORT || 3000;
 
 let db;
 
-// Database connection middleware for both local and serverless environments
-app.use(async (request, response, next) => {
-    if (!db) {
-        try {
-            db = await open({
-                filename: dbPath,
-                driver: sqlite3.Database,
-            });
-        } catch (error) {
-            return response.status(500).json({ error: "Database connection failed." });
-        }
+// Unified database connector with native sqlite3 and WebAssembly sql.js fallback
+const getDatabase = async () => {
+    if (db) return db;
+
+    try {
+        const sqlite3 = require("sqlite3");
+        const { open } = require("sqlite");
+        db = await open({
+            filename: dbPath,
+            driver: sqlite3.Database,
+        });
+        return db;
+    } catch (nativeError) {
+        // Fallback to pure WebAssembly sql.js for serverless runtimes
+        const initSqlJs = require("sql.js");
+        const wasmPath = require.resolve("sql.js/dist/sql-wasm.wasm");
+        const wasmBinary = fs.readFileSync(wasmPath);
+        const SQL = await initSqlJs({ wasmBinary });
+        const filebuffer = fs.readFileSync(dbPath);
+        const memDb = new SQL.Database(filebuffer);
+
+        const save = () => {
+            try {
+                const data = memDb.export();
+                fs.writeFileSync(dbPath, Buffer.from(data));
+            } catch (e) {}
+        };
+
+        db = {
+            async all(sql, params = []) {
+                const stmt = memDb.prepare(sql);
+                stmt.bind(params);
+                const rows = [];
+                while (stmt.step()) {
+                    rows.push(stmt.getAsObject());
+                }
+                stmt.free();
+                return rows;
+            },
+            async get(sql, params = []) {
+                const stmt = memDb.prepare(sql);
+                stmt.bind(params);
+                let row;
+                if (stmt.step()) {
+                    row = stmt.getAsObject();
+                }
+                stmt.free();
+                return row;
+            },
+            async run(sql, params = []) {
+                memDb.run(sql, params);
+                save();
+                const res = memDb.exec("SELECT last_insert_rowid() as id, changes() as changes");
+                return {
+                    lastID: res[0]?.values[0][0],
+                    changes: res[0]?.values[0][1]
+                };
+            }
+        };
+        return db;
     }
-    next();
+};
+
+// Database connection middleware for all requests
+app.use(async (request, response, next) => {
+    try {
+        await getDatabase();
+        next();
+    } catch (error) {
+        return response.status(500).json({ error: "Database connection failed: " + error.message });
+    }
 });
 
 // Root endpoint for API welcome and guide
@@ -48,11 +120,7 @@ app.get("/", (request, response) => {
 // Initialize the database before starting the server locally
 const initializeDBAndServer = async () => {
     try {
-        db = await open({
-            filename: dbPath,
-            driver: sqlite3.Database,
-        });
-
+        await getDatabase();
         console.log("Connected to SQLite database.");
 
         app.listen(port, () => {
