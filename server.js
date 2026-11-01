@@ -12,7 +12,40 @@ const port = process.env.PORT || 3000;
 
 let db;
 
-// Initialize the database before starting the server.
+// Database connection middleware for both local and serverless environments
+app.use(async (request, response, next) => {
+    if (!db) {
+        try {
+            db = await open({
+                filename: dbPath,
+                driver: sqlite3.Database,
+            });
+        } catch (error) {
+            return response.status(500).json({ error: "Database connection failed." });
+        }
+    }
+    next();
+});
+
+// Root endpoint for API welcome and guide
+app.get("/", (request, response) => {
+    response.status(200).json({
+        message: "Welcome to Lab 02 - Express & SQLite Books CRUD API!",
+        author: {
+            name: "D. Ananya",
+            section: "CSE AIML-2B"
+        },
+        endpoints: {
+            getAllBooks: "GET /books/",
+            getBookById: "GET /books/:bookId/",
+            addBook: "POST /books/",
+            updateBook: "PUT /books/:bookId/",
+            deleteBook: "DELETE /books/:bookId/"
+        }
+    });
+});
+
+// Initialize the database before starting the server locally
 const initializeDBAndServer = async () => {
     try {
         db = await open({
@@ -31,7 +64,9 @@ const initializeDBAndServer = async () => {
     }
 };
 
-initializeDBAndServer();
+if (!process.env.VERCEL) {
+    initializeDBAndServer();
+}
 
 // GET /books/ - Retrieve all books.
 app.get("/books/", async (request, response) => {
@@ -161,3 +196,5 @@ app.delete("/books/:bookId/", async (request, response) => {
         response.status(500).json({ error: "Failed to delete book." });
     }
 });
+
+module.exports = app;
