@@ -5,6 +5,22 @@ This repository contains the completed project for **Lab 2: SQLite Database and 
 
 ---
 
+## 🔗 Project Links
+
+- 📂 **GitHub Repository:** [https://github.com/giddalururevathi1-tech/Lab_Report_1/tree/lab-2](https://github.com/giddalururevathi1-tech/Lab_Report_1/tree/lab-2)
+- 💻 **Localhost Home:** [http://localhost:3000/](http://localhost:3000/)
+- 📚 **Localhost Books Endpoint:** [http://localhost:3000/books](http://localhost:3000/books)
+- 🚀 **Live Deployment URL:** [https://labreport2-pi.vercel.app/](https://labreport2-pi.vercel.app/)
+
+---
+
+## 👤 Author Information
+
+- **Name:** Giddaluru Revathi
+- **Section:** CSE AIML-2B
+
+---
+
 ## 📁 Project Structure
 
 ```text
@@ -29,7 +45,7 @@ Lab_Report 2/
 
 | Column Name | Data Type | Constraint | Description |
 | :--- | :--- | :--- | :--- |
-| `id` | `INTEGER` | `PRIMARY KEY AUTOINCREMENT` | Unique identifier for each book |
+| `id` | `INTEGER` | `PRIMARY KEY` | Unique identifier for each book |
 | `title` | `TEXT` | | Title of the book |
 | `author` | `TEXT` | | Author of the book |
 | `price` | `INTEGER` | | Price of the book |
@@ -55,13 +71,11 @@ Lab_Report 2/
 ## 🚀 Commands to Run the Project
 
 ### 1. Install Dependencies
-If running on a new machine or fresh clone:
 ```bash
 npm install
 ```
 
 ### 2. Start the Server with Nodemon (Development Mode)
-Automatically restarts whenever changes are saved in `app.js`:
 ```bash
 npm run dev
 ```
@@ -76,34 +90,23 @@ npm start
 
 ## 🌐 CRUD API Endpoints
 
-| HTTP Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| **GET** | `/` | Root endpoint / Status check |
-| **GET** | `/books` | Retrieve list of all books |
-| **GET** | `/books/:bookId` | Retrieve a single book by ID |
-| **POST** | `/books` | Add a new book |
-| **PUT** | `/books/:bookId` | Update an existing book's details |
-| **DELETE** | `/books/:bookId` | Delete a book by ID |
+| HTTP Method | Endpoint | Localhost Link | Description |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/` | [http://localhost:3000/](http://localhost:3000/) | Root status message |
+| **GET** | `/books` | [http://localhost:3000/books](http://localhost:3000/books) | Retrieve list of all books |
+| **GET** | `/books/:bookId` | [http://localhost:3000/books/1](http://localhost:3000/books/1) | Retrieve a single book by ID |
+| **POST** | `/books` | [http://localhost:3000/books](http://localhost:3000/books) | Add a new book (JSON body) |
+| **PUT** | `/books/:bookId` | [http://localhost:3000/books/1](http://localhost:3000/books/1) | Update an existing book's details |
+| **DELETE** | `/books/:bookId` | [http://localhost:3000/books/1](http://localhost:3000/books/1) | Delete a book by ID |
 
-### Example Request Payloads:
+---
 
-#### Add a Book (`POST /books`)
-```json
-{
-  "title": "Clean Code",
-  "author": "Robert C. Martin",
-  "price": 650,
-  "pages": 464
-}
-```
+## 📸 Lab Execution & Verification Screenshots
 
-#### Update a Book (`PUT /books/1`)
-```json
-{
-  "title": "To Kill a Mockingbird (Special Edition)",
-  "author": "Harper Lee",
-  "price": 450,
-  "pages": 300
-}
-```
-
+| Execution Screenshot | Description |
+| :--- | :--- |
+| ![Screenshot 155](Screenshot%20(155).png) | Server execution and terminal logs |
+| ![Screenshot 156](Screenshot%20(156).png) | Database creation and sample records verification |
+| ![Screenshot 157](Screenshot%20(157).png) | GET /books endpoint execution in browser |
+| ![Screenshot 158](Screenshot%20(158).png) | Single book retrieval and CRUD operations |
+| ![Screenshot 159](Screenshot%20(159).png) | Postman / curl testing with JSON request body |
