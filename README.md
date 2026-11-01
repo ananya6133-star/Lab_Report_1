@@ -4,18 +4,17 @@ A comprehensive backend development lab demonstrating how to build a RESTful CRU
 
 ---
 
-## 🌐 Live & Localhost URLs
+## 🌐 Live Deployment & Localhost Links
 
-- 🔗 **Live Deployment:** [https://labreport2backendd.vercel.app/](https://labreport2backendd.vercel.app/)
+- 🔗 **Live Production URL:** [https://labreport2backendd.vercel.app/](https://labreport2backendd.vercel.app/)
+- 🔗 **Vercel Mirror URL:** [https://lab-02-fawn.vercel.app/](https://lab-02-fawn.vercel.app/)
 - 💻 **Localhost Server:** [http://localhost:3000/](http://localhost:3000/)
 
-### Quick Route Links
+### Direct Live API Endpoints (Click to Test)
 
-| Route | Localhost Link | Live Link |
-| :--- | :--- | :--- |
-| **API Root** | [http://localhost:3000/](http://localhost:3000/) | [https://labreport2backendd.vercel.app/](https://labreport2backendd.vercel.app/) |
-| **All Books** | [http://localhost:3000/books/](http://localhost:3000/books/) | [https://labreport2backendd.vercel.app/books/](https://labreport2backendd.vercel.app/books/) |
-| **Single Book (`id: 4`)** | [http://localhost:3000/books/4/](http://localhost:3000/books/4/) | [https://labreport2backendd.vercel.app/books/4/](https://labreport2backendd.vercel.app/books/4/) |
+- 🏠 **API Welcome & Route Guide:** [https://labreport2backendd.vercel.app/](https://labreport2backendd.vercel.app/)
+- 📚 **Get All Books (`/books/`):** [https://labreport2backendd.vercel.app/books/](https://labreport2backendd.vercel.app/books/)
+- 📖 **Get Book 4 (`/books/4/`):** [https://labreport2backendd.vercel.app/books/4/](https://labreport2backendd.vercel.app/books/4/)
 
 ---
 
