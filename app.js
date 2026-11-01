@@ -176,8 +176,8 @@ app.get("/", (req, res) => {
   res.send("Backend Development Fundamentals Lab 2 - SQLite Database and CRUD Routes");
 });
 
-// 2. READ ALL: Get list of all books
-app.get("/books", async (req, res) => {
+// 2. READ ALL: Get list of all books (supports both /books and /books/)
+app.get(["/books", "/books/"], async (req, res) => {
   try {
     const getBooksQuery = `SELECT * FROM book ORDER BY id;`;
     const books = await db.all(getBooksQuery);
@@ -188,7 +188,7 @@ app.get("/books", async (req, res) => {
 });
 
 // 3. READ ONE: Get a single book by ID
-app.get("/books/:bookId", async (req, res) => {
+app.get(["/books/:bookId", "/books/:bookId/"], async (req, res) => {
   try {
     const { bookId } = req.params;
     const getBookQuery = `SELECT * FROM book WHERE id = ?;`;
@@ -205,7 +205,7 @@ app.get("/books/:bookId", async (req, res) => {
 });
 
 // 4. CREATE: Add a new book
-app.post("/books", async (req, res) => {
+app.post(["/books", "/books/"], async (req, res) => {
   try {
     // Check if request body exists
     if (!req.body) {
@@ -245,7 +245,7 @@ app.post("/books", async (req, res) => {
 });
 
 // 5. UPDATE: Update book details by ID
-app.put("/books/:bookId", async (req, res) => {
+app.put(["/books/:bookId", "/books/:bookId/"], async (req, res) => {
   try {
     const { bookId } = req.params;
     const { title, author, price, pages } = req.body;
@@ -268,7 +268,7 @@ app.put("/books/:bookId", async (req, res) => {
 });
 
 // 6. DELETE: Delete a book by ID
-app.delete("/books/:bookId", async (req, res) => {
+app.delete(["/books/:bookId", "/books/:bookId/"], async (req, res) => {
   try {
     const { bookId } = req.params;
     const deleteBookQuery = `DELETE FROM book WHERE id = ?;`;
