@@ -7,11 +7,11 @@ This repository contains the completed project for **Lab 2: SQLite Database and 
 
 ## 🔗 Project Links
 
-- 📂 **GitHub Repository:** [https://github.com/giddalururevathi1-tech/Lab_Report_1/tree/lab-2](https://github.com/giddalururevathi1-tech/Lab_Report_1/tree/lab-2)
+- 📂 **GitHub Repository:** [https://github.com/giddalururevathi1-tech/Lab_Report_1](https://github.com/giddalururevathi1-tech/Lab_Report_1)
 - 💻 **Localhost Home:** [http://localhost:3000/](http://localhost:3000/)
 - 📚 **Localhost Books Endpoint:** [http://localhost:3000/books](http://localhost:3000/books)
-- 🚀 **Live Deployment URL:** [https://labreport1-git-lab-2-giddalururevathi1-tech.vercel.app/](https://labreport1-git-lab-2-giddalururevathi1-tech.vercel.app/)
-- 📚 **Live Books Endpoint:** [https://labreport1-git-lab-2-giddalururevathi1-tech.vercel.app/books](https://labreport1-git-lab-2-giddalururevathi1-tech.vercel.app/books)
+- 🚀 **Live Deployment URL:** [https://labreport1-pi.vercel.app/](https://labreport1-pi.vercel.app/)
+- 📖 **Live Books Endpoint:** [https://labreport1-pi.vercel.app/books/](https://labreport1-pi.vercel.app/books/)
 
 ---
 
