@@ -11,8 +11,8 @@
 - **Academic Term:** Term 2
 - **Course:** Backend Development Fundamentals
 - **GitHub Repository (Lab 3):** [https://github.com/ananya6133-star/Lab_Report_1/tree/lab-03](https://github.com/ananya6133-star/Lab_Report_1/tree/lab-03)
-- **Live Deployment URL:** [https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/](https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/)
-- **Live Books API Endpoint:** [https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/books](https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/books)
+- **Live Deployment URL:** [https://labreport1-delta.vercel.app/](https://labreport1-delta.vercel.app/)
+- **Live Books API Endpoint:** [https://labreport1-delta.vercel.app/books](https://labreport1-delta.vercel.app/books)
 
 ---
 

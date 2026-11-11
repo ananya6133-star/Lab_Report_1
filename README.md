@@ -18,8 +18,8 @@ The project extends basic CRUD capabilities with advanced query parameter filter
 ## 🔗 Project Links
 
 - 📂 **GitHub Repository:** [https://github.com/ananya6133-star/Lab_Report_1/tree/lab-03](https://github.com/ananya6133-star/Lab_Report_1/tree/lab-03)
-- 🚀 **Live Deployment URL:** [https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/](https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/)
-- 📖 **Live Books API Endpoint:** [https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/books](https://lab-report-1-git-lab-3-giddalururevathi1-tech.vercel.app/books)
+- 🚀 **Live Deployment URL:** [https://labreport1-delta.vercel.app/](https://labreport1-delta.vercel.app/)
+- 📖 **Live Books API Endpoint:** [https://labreport1-delta.vercel.app/books](https://labreport1-delta.vercel.app/books)
 - 💻 **Localhost Server:** [http://localhost:3000/](http://localhost:3000/)
 - 📚 **Localhost Books API:** [http://localhost:3000/books](http://localhost:3000/books)
 
